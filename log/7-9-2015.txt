@@ -1,0 +1,29 @@
+from 11:30
+to 01:40
+
+how to use selinium with google
+ - configuration( chrome server, default environment of this)
+ - input string to search windows and submit that data
+ - scroll
+
+shortcut chrome icon to 
+C:\Users\yeonbaep\AppData\Local\Google\Chrome\Application
+
+
+chrome web driver offcial site
+https://sites.google.com/a/chromium.org/chromedriver/home
+
+chrome web driver server download
+http://chromedriver.storage.googleapis.com/index.html?path=2.16/
+
+how to scroll
+http://stackoverflow.com/questions/12293158/page-scroll-up-or-down-in-selenium-webdriver-selenium-2-using-java
+
+
+
+
+
+
+
+
+
