@@ -13,36 +13,33 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class Inspection {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         // TODO Auto-generated method stub
      // The Firefox driver supports javascript 
         //WebDriver driver = new ChromeDriver();
         
-        WebDriver driver=null;
+    	WebDriver driver = null;
         try {
-            driver = new RemoteWebDriver(new URL("http://localhost:9515"), DesiredCapabilities.chrome());
+        	driver = new RemoteWebDriver(new URL("http://localhost:9515"), DesiredCapabilities.chrome());
+        	ExplorationN e = new ExplorationN(driver);
+        	
+        	e.init(new URL("http://www.google.com/webhp?complete=1&hl=en"));
+        	e.run();
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
-        driver.get("http://www.google.com/webhp?complete=1&hl=en");
+        
+        
+        
         
         // Go to the Google Suggest home page
         //driver.get("http://www.google.com/webhp?complete=1&hl=en");
         
         // Enter the query string "Cheese"
-        WebElement query = driver.findElement(By.name("q"));
-        query.sendKeys("Cheese");
-        query.submit();
-        Sleeper.sleepTightInSeconds(5);
-
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
-        //jse.executeScript("window.scrollBy(0,250)", "");
-        jse.executeScript("scroll(0, 250);");
+        
+        
     /*List<WebElement> allSuggestions = driver.findElements(By.xpath("//td[@class='gssb_a gbqfsf']"));
         for (WebElement suggestion : allSuggestions) {
             System.out.println(suggestion.getText());
@@ -68,4 +65,8 @@ public class Inspection {
         //driver.quit();
     }
 
+   
+
 }
+
+
