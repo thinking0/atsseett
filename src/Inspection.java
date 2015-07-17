@@ -10,6 +10,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
+import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
+
 
 public class Inspection {
 
