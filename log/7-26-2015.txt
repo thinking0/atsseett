@@ -1,0 +1,8 @@
+from 20:00
+to 21:00
+
+scenario of the searching process
+1. searching specific sentences
+(2). if no, scroll down (by random time) or go to next page, and repeat 1 step
+(2). if yes, enter the link
+3. scroll up/down the web page by during random time
