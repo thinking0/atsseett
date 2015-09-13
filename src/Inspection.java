@@ -1,29 +1,23 @@
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
-
-import com.gargoylesoftware.htmlunit.javascript.host.geo.Coordinates;
 
 
 public class Inspection {
-
+	
     public static void main(String[] args) {
         // TODO Auto-generated method stub
      // The Firefox driver supports javascript 
         //WebDriver driver = new ChromeDriver();
         
-    	WebDriver driver = null;
+    	
         try {
-        	driver = new RemoteWebDriver(new URL("http://localhost:9515"), DesiredCapabilities.chrome());
-        	ExplorationN e = new ExplorationN(driver);
+        	WebDriver mDriver = getWebDriver();
+        	ExplorationN e = new ExplorationN(mDriver);
         	
         	e.init(new URL("http://www.google.com/webhp?complete=1&hl=en"));
         	e.run();
@@ -65,6 +59,38 @@ public class Inspection {
         }*/
 
         //driver.quit();
+    }
+    
+    
+    private static WebDriver getWebDriver() {
+    	WebDriver driver = null;
+		try {
+			DesiredCapabilities dc = getDesiredCapability();
+			driver = new RemoteWebDriver(new URL("http://localhost:9515"), dc);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return driver;
+    }
+    
+    private static DesiredCapabilities getDesiredCapability() {
+    	WebDriver dr = null;
+    	
+    	Proxy proxy = setProxyServer();
+    	DesiredCapabilities dc = DesiredCapabilities.chrome();
+    	// TODO: add proxy list
+    	//dc.setCapability(CapabilityType.PROXY, proxy);
+    	return dc;
+    }
+    
+    private static Proxy setProxyServer() {
+    	Proxy proxy = new org.openqa.selenium.Proxy(); 
+    	proxy.setSslProxy("proxyurl"+":"+8080); 
+    	proxy.setFtpProxy("proxy url"+":"+8080); 
+    	proxy.setSocksUsername("SSSLL277"); 
+    	proxy.setSocksPassword("password");
+    	return proxy;
     }
 
    
