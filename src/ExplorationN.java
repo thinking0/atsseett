@@ -45,7 +45,7 @@ public class ExplorationN{
 		WebElement query = mDriver.findElement(By.name("q"));
 		Point point = query.getLocation();
         System.out.println("size : " + point);
-        query.sendKeys("Cheese");
+        query.sendKeys("ip check");
         query.submit();
         Sleeper.sleepTightInSeconds(1);
         
@@ -57,7 +57,7 @@ public class ExplorationN{
         	System.out.println("siz11e : " + menuHoverLink.get(0).getAttribute("href"));	
         }
         
-        String searchLinkTxt = "http://www.beechershandmadecheese.com/";
+        String searchLinkTxt = "http://whatismyipaddress.com/";
         searchLink(searchLinkTxt);
         
 
