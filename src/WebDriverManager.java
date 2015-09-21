@@ -26,6 +26,8 @@ public class WebDriverManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			mDriver.manage().deleteAllCookies();
 		}
 
 	}

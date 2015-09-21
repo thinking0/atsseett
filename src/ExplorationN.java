@@ -20,7 +20,7 @@ public class ExplorationN{
 	}
 	
 	public void init(URL url) {
-		mDriver.get("http://www.google.com/webhp?complete=1&hl=en");
+		mDriver.get("http://www.naver.com/");
 		mWindowSize = mDriver.manage().window().getSize();
 		System.out.println("size11 : " + mWindowSize);
 		
@@ -42,26 +42,29 @@ public class ExplorationN{
 	public void run() {
 		//TODO: if here is no checking access to webpage, through this to failure
 		
-		WebElement query = mDriver.findElement(By.name("q"));
+		WebElement query = mDriver.findElement(By.name("query"));
 		Point point = query.getLocation();
         System.out.println("size : " + point);
-        query.sendKeys("ip check");
+        query.sendKeys("mnemonics soft");
         query.submit();
         Sleeper.sleepTightInSeconds(1);
         
+        //goto blog
+        WebElement blogLink = mDriver.findElement(By.className("lnb3"));
+        blogLink.click();
         
-        
-        List<WebElement> menuHoverLink = mDriver.findElements(By.cssSelector("a"));
+        String searchLinkTxt = "http://blog.naver.com/jscont?Redirect=Log&logNo=220277515507";
+        searchLink(searchLinkTxt);
+        /*List<WebElement> menuHoverLink = mDriver.findElements(By.cssSelector("a"));
         System.out.println("siz11e : " + menuHoverLink.size());
         if(menuHoverLink.size() > 0) {
         	System.out.println("siz11e : " + menuHoverLink.get(0).getAttribute("href"));	
         }
         
         String searchLinkTxt = "http://whatismyipaddress.com/";
-        searchLink(searchLinkTxt);
+        searchLink(searchLinkTxt);*/
         
 
-        //searchSentence("Vermont Cheese");
         
         
         /*
@@ -80,40 +83,32 @@ public class ExplorationN{
         }*/
         
         
-        
-        
-        
-        /*WebElement elementList = (WebElement) mDriver.findElements(By.xpath("/html/body[@id='gsr']/div[@id='main']/div[@id='cnt']/div[@class='mw'][2]/div[@id='rcnt']/div[@class='col'][1]/div[@id='center_col']/div[5]/div[@id='foot']/span[@id='xjs']/div[@id='navcnt']/table[@id='nav']/tbody/tr/td[5]/a[@class='fl']"));
-        
-        org.openqa.selenium.interactions.internal.Coordinates coord=(org.openqa.selenium.interactions.internal.Coordinates) ((org.openqa.selenium.internal.Locatable)elementList).getCoordinates();
-        coord.inViewPort();*/
-        
-        /*boolean found = findElement();
-        if (found == true) {
-        
-        	List<WebElement> elementList = mDriver.findElements(By.className("fl"));
-
-        	for (WebElement ele : elementList) {
-        	String elementStr = ele.getText();
-        		if(elementStr.equals("2")) {
-        			ele.click();
-        			break;
-        		}
-        	}
-        }
-        Sleeper.sleepTightInSeconds(1);
-        List<WebElement> elementList2 = mDriver.findElements(By.className("rc"));
-        for (WebElement ele : elementList2) {
-        	WebElement link = ele.findElement(By.className("r")).findElement(By.tagName("a"));
-        	String title = link.getText();
-        	System.out.println("title : " + title);
-			if(title.equals("Tillamook Dairy Co-Op")) {
-        			link.click();
-        			break;
-        	}
-        }*/
         //mDriver.close();
 	}
+
+
+	private void goAnotherPage2 (String curPage, String searchText) {
+		List<WebElement> elementList = mDriver.findElements(By.cssSelector(".paging *"));
+		
+		/*WebElement curPageElement = mDriver.findElement(By.cssSelector(".paging strong"));
+		curPageElement.*/
+		System.out.println("sizizi : " + elementList.get(0).getTagName() + " , " + elementList.get(1).getTagName());
+		
+    	for (WebElement ele : elementList) {
+    		String pageNumber = ele.getText();
+    		String nextPage = String.valueOf(Integer.parseInt(curPage)+1);
+    		if (pageNumber.equals(nextPage)) {
+    			ele.click();
+    			break;
+    		} else {
+    			
+    		}
+    	}
+    	
+    	searchLink(searchText);
+	}
+	
+	
 	private void searchLink(String searchLinkText) {
 		Sleeper.sleepTightInSeconds(1);
 		
@@ -123,16 +118,15 @@ public class ExplorationN{
         WebElement specificPageLink = null;
         
         //current page string
-        WebElement eleCurrentPage = mDriver.findElement(By.className("cur"));
-        String curPage = eleCurrentPage.getText();
-        System.out.println("curpage : " + curPage);
+        WebElement curPageElement = mDriver.findElement(By.cssSelector(".paging strong"));
+        String curPage = curPageElement.getText();
         for (WebElement ele : menuHoverLinkList) {
         	// TODO: need to determine when scroll will be down
         	String link = ele.getAttribute("href");
         	if(link != null) {
         		System.out.println("title : " + link);
             	
-    			if (link.matches(searchLinkText)) {
+    			if (link.equals(searchLinkText)) {
     					System.out.println("success");
     					foundPage = true;
     					specificPageLink = ele;
@@ -151,29 +145,11 @@ public class ExplorationN{
         	// TODO: determine scrolling process
         	findElement();
         	// go to other page
-        	goAnotherPage2(curPage,searchLinkText);
+        	//TODO: if there is final page, should be done
+        	goAnotherPage2(curPage, searchLinkText);
         	
         }
 	}
-	
-
-	private void goAnotherPage2 (String currentPage, String searchText) {
-		List<WebElement> elementList = mDriver.findElements(By.className("fl"));
-		String nextPage = String.valueOf((Integer.parseInt(currentPage)+1));
-    	for (WebElement ele : elementList) {
-    		String pageStr = ele.getText();
-    		
-    		if(currentPage == pageStr) continue;
-    	
-    		if(pageStr.equals(nextPage)) {
-    			ele.click();
-    			break;
-    		}
-    	}
-    	
-    	searchLink(searchText);
-	}
-	
 	
 	private void searchSentence(String searchTxt) {
 		Sleeper.sleepTightInSeconds(1);

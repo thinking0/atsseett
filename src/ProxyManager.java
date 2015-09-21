@@ -21,7 +21,9 @@ public class ProxyManager {
 		String ip="";
 		List<String> proxyList = getProxyList();
 		Random rnd = new Random();
-		int proxyIndex = rnd.nextInt(proxyList.size()-1);
+		//TODO: check network connection for proxy
+		//int proxyIndex = rnd.nextInt(proxyList.size()-1);
+		int proxyIndex = 0;
 		System.out.println("proxy index : " + proxyIndex);
 		return proxyList.get(proxyIndex);
 	}
