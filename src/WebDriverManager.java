@@ -8,7 +8,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class WebDriverManager {
-
+	
+	public static boolean PROXY_ENABLE = true;
 	private WebDriver mDriver;
 	private ProxyManager mProxyManager;
 	
@@ -36,13 +37,17 @@ public class WebDriverManager {
     	return mDriver;
     }
     
+    
     private  DesiredCapabilities getDesiredCapability() {
     	WebDriver dr = null;
     	
     	Proxy proxy = setProxyServer(mProxyManager.getSpecificProxy());
     	DesiredCapabilities dc = DesiredCapabilities.chrome();
     	// TODO: add proxy list
-    	dc.setCapability(CapabilityType.PROXY, proxy);
+    	if (PROXY_ENABLE == true) {
+    		dc.setCapability(CapabilityType.PROXY, proxy);	
+    	}
+    	
     	return dc;
     }
     

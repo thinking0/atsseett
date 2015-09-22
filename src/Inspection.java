@@ -19,6 +19,8 @@ public class Inspection {
         try {
         	WebDriverManager wManager = new WebDriverManager();
         	WebDriver mDriver = wManager.getWebDriver();
+        	//testApp e = new testApp(mDriver);
+        	
         	ExplorationN e = new ExplorationN(mDriver);
         	
         	e.init(new URL("http://www.google.com/webhp?complete=1&hl=en"));

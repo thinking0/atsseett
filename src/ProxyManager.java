@@ -22,8 +22,8 @@ public class ProxyManager {
 		List<String> proxyList = getProxyList();
 		Random rnd = new Random();
 		//TODO: check network connection for proxy
-		//int proxyIndex = rnd.nextInt(proxyList.size()-1);
-		int proxyIndex = 0;
+		int proxyIndex = rnd.nextInt(proxyList.size()-1);
+		//int proxyIndex = 1;
 		System.out.println("proxy index : " + proxyIndex);
 		return proxyList.get(proxyIndex);
 	}
@@ -43,10 +43,12 @@ public class ProxyManager {
 			result = 1;
 		} else {
 			//TODO: compre current and expired date
+			
 			Date curDate = Calendar.getInstance().getTime();
 			long diff = Math.abs(curDate.getTime() - mExpiredDate.getTime());
 			long diffDays = diff / (24 * 60 * 60 * 1000);
 			if (diffDays >=1) {
+				System.out.println("proxy list was expired : " + mExpiredDate.getTime());
 				result = 1;
 			}
 		}
