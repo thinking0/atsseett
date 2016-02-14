@@ -60,7 +60,7 @@ public class ExplorationN{
         //goto blog
         WebElement blogLink = mWait.until(ExpectedConditions.elementToBeClickable(By.className("lnb3")));
         blogLink.click();
-        String searchLinkTxt = "http://carspyshot.tistory.com/10951";
+        String searchLinkTxt = "http://blog.naver.com/iamwinmir?Redirect=Log&logNo=220099932745";
         searchLink(searchLinkTxt);
 		
 		
